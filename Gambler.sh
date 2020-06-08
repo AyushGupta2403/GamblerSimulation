@@ -6,7 +6,7 @@ STAKE=100
 BET=1
 ISWIN=1
 
-#Checking for a  Month
+#Checking for a month
 for (( index=1; index<=20; index++ ))
 do
 #Variable
@@ -25,7 +25,10 @@ do
 			echo lose
 			((cash--))
 		fi
+			dayWonLoss=$(($cash-$STAKE))
 	done
 	totalAmount[index]=$cash
+	dayWonLoss[index]=$dayWonLoss
 done
 echo "Total Amount won or loss :: "${totalAmount[@]}
+echo "Days won and Loss by :: "${dayWonLoss[@]}
