@@ -1,25 +1,31 @@
 #!/bin/bash -x
 echo "---------Welcome To Gambling---------"
+
 #Constants
 STAKE=100
 BET=1
 ISWIN=1
 
-#Variable
-cash=$STAKE
-minimum=$(($STAKE-$STAKE/2))
-maximum=$(($STAKE+$STAKE/2))
-
-while (( $cash != $minimum && $cash != $maximum ))
+#Checking for a  Month
+for (( index=1; index<=20; index++ ))
 do
-#checking for a win or a loss
-	randomCheck=$((RANDOM%2))
-	if [ $randomCheck -eq $ISWIN ]
-	then
-		echo win
-		((cash++))
-	else
-		echo lose
-		((cash--))
-	fi
+#Variable
+	cash=$STAKE
+	minimum=$(($STAKE-$STAKE/2))
+	maximum=$(($STAKE+$STAKE/2))
+	while (( $cash != $minimum && $cash != $maximum ))
+	do
+#Checking for a Win Or Loss Randomly
+		randomCheck=$((RANDOM%2))
+		if [ $randomCheck -eq $ISWIN ]
+		then
+			echo win
+			((cash++))
+		else
+			echo lose
+			((cash--))
+		fi
+	done
+	totalAmount[index]=$cash
 done
+echo "Total Amount won or loss :: "${totalAmount[@]}
